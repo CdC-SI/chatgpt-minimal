@@ -70,6 +70,17 @@ const SendBar = (props: SendBarProps) => {
     }
   }
 
+  const theme = {
+    suggestionsList: {
+      listStyleType: 'none', // Remove bullet points
+      margin: 0,
+      padding: 0,
+    },
+    suggestion: {
+      padding: '5px',
+    },
+  };
+
   return (
     <Show
       fallback={
@@ -90,6 +101,7 @@ const SendBar = (props: SendBarProps) => {
           getSuggestionValue={getSuggestionValue}
           renderSuggestion={renderSuggestion}
           inputProps={inputProps}
+          theme={theme}
         />
         <button className="button" title="Send" disabled={disabled} onClick={handleSend}>
           <SendOutlined />
