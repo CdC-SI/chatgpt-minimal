@@ -10,10 +10,8 @@ const SendBar = (props: SendBarProps) => {
   const [suggestions, setSuggestions] = useState<string[]>([])
   const [inputValue, setInputValue] = useState('')
 
-  // Define your fixed list of suggestions
   const fixedSuggestions = ['Suggestion 1', 'Suggestion 2', 'Suggestion 3']
 
-  // Teach Autosuggest how to calculate suggestions for any given input value.
   const getSuggestions = (value: string) => {
     const inputValue = value.trim().toLowerCase()
     const inputLength = inputValue.length
@@ -41,9 +39,10 @@ const SendBar = (props: SendBarProps) => {
 
   const inputProps = {
     placeholder: "Type a message",
-    value: inputValue, // Use the state variable here
+    value: inputValue,
+    className: "input",
     onChange: (_: any, { newValue }: any) => {
-      setInputValue(newValue) // Update the state variable when the input changes
+      setInputValue(newValue)
     },
     onKeyDown: (e: KeyboardEventHandler<HTMLTextAreaElement>) => {
       if (e.shiftKey) {
@@ -57,13 +56,13 @@ const SendBar = (props: SendBarProps) => {
   }
 
   const handleClear = () => {
-    setInputValue('') // Clear the state variable
+    setInputValue('')
     onClear()
   }
 
   const handleSend = () => {
     if (inputValue) {
-      setInputValue('') // Clear the state variable
+      setInputValue('')
       onSend({
         content: inputValue,
         role: ChatRole.User
