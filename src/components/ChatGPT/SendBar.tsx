@@ -1,49 +1,73 @@
-import React, { KeyboardEventHandler, useRef } from 'react'
-
+import React, { KeyboardEventHandler, useState } from 'react'
+import Autosuggest from 'react-autosuggest'
 import { ClearOutlined, SendOutlined } from '@ant-design/icons'
-
 import { ChatRole, SendBarProps } from './interface'
 import Show from './Show'
 
 const SendBar = (props: SendBarProps) => {
   const { loading, disabled, onSend, onClear, onStop } = props
 
-  const inputRef = useRef<HTMLTextAreaElement>(null)
+  const [suggestions, setSuggestions] = useState<string[]>([])
+  const [inputValue, setInputValue] = useState('')
 
-  const onInputAutoSize = () => {
-    if (inputRef.current) {
-      inputRef.current.style.height = 'auto'
-      inputRef.current.style.height = inputRef.current.scrollHeight + 'px'
+  // Define your fixed list of suggestions
+  const fixedSuggestions = ['Suggestion 1', 'Suggestion 2', 'Suggestion 3']
+
+  // Teach Autosuggest how to calculate suggestions for any given input value.
+  const getSuggestions = (value: string) => {
+    const inputValue = value.trim().toLowerCase()
+    const inputLength = inputValue.length
+
+    return inputLength === 0 ? [] : fixedSuggestions.filter(item =>
+      item.toLowerCase().slice(0, inputLength) === inputValue
+    )
+  }
+
+  const onSuggestionsFetchRequested = ({ value }: any) => {
+    setSuggestions(getSuggestions(value))
+  }
+
+  const onSuggestionsClearRequested = () => {
+    setSuggestions([])
+  }
+
+  const getSuggestionValue = (suggestion: string) => suggestion
+
+  const renderSuggestion = (suggestion: string) => (
+    <div>
+      {suggestion}
+    </div>
+  )
+
+  const inputProps = {
+    placeholder: "Type a message",
+    value: inputValue, // Use the state variable here
+    onChange: (_: any, { newValue }: any) => {
+      setInputValue(newValue) // Update the state variable when the input changes
+    },
+    onKeyDown: (e: KeyboardEventHandler<HTMLTextAreaElement>) => {
+      if (e.shiftKey) {
+        return
+      }
+
+      if (e.key === 'Enter' && !e.nativeEvent.isComposing) {
+        handleSend()
+      }
     }
   }
 
   const handleClear = () => {
-    if (inputRef.current) {
-      inputRef.current.value = ''
-      inputRef.current.style.height = 'auto'
-      onClear()
-    }
+    setInputValue('') // Clear the state variable
+    onClear()
   }
 
   const handleSend = () => {
-    const content = inputRef.current?.value
-    if (content) {
-      inputRef.current!.value = ''
-      inputRef.current!.style.height = 'auto'
+    if (inputValue) {
+      setInputValue('') // Clear the state variable
       onSend({
-        content,
+        content: inputValue,
         role: ChatRole.User
       })
-    }
-  }
-
-  const onKeydown: KeyboardEventHandler<HTMLTextAreaElement> = (e) => {
-    if (e.shiftKey) {
-      return
-    }
-
-    if (e.key === 'Enter' && !e.nativeEvent.isComposing) {
-      handleSend()
     }
   }
 
@@ -60,15 +84,13 @@ const SendBar = (props: SendBarProps) => {
       loading={loading}
     >
       <div className="send-bar">
-        <textarea
-          ref={inputRef!}
-          className="input"
-          disabled={disabled}
-          placeholder="Shift + Enter for new line"
-          autoComplete="off"
-          rows={1}
-          onKeyDown={onKeydown}
-          onInput={onInputAutoSize}
+        <Autosuggest
+          suggestions={suggestions}
+          onSuggestionsFetchRequested={onSuggestionsFetchRequested}
+          onSuggestionsClearRequested={onSuggestionsClearRequested}
+          getSuggestionValue={getSuggestionValue}
+          renderSuggestion={renderSuggestion}
+          inputProps={inputProps}
         />
         <button className="button" title="Send" disabled={disabled} onClick={handleSend}>
           <SendOutlined />
