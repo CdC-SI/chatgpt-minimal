@@ -13,6 +13,7 @@ export interface ChatGPTProps {
 export interface ChatMessage {
   content: string
   role: ChatRole
+  isFromSuggestion?: boolean
 }
 
 export interface ChatMessageItemProps {
@@ -31,4 +32,13 @@ export interface ShowProps {
   loading?: boolean
   fallback?: ReactNode
   children?: ReactNode
+}
+
+export interface Suggestion {
+  question: string;
+  answer: string;
+}
+
+export interface SuggestionsFetchRequestedParams {
+  value: string;
 }
