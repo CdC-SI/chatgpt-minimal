@@ -111,10 +111,12 @@ export const useChatGPT = (props: ChatGPTProps) => {
   }
 
   const onSend = (message: ChatMessage) => {
-    const newMessages = [...messages, message]
-    setMessages(newMessages)
-    fetchMessage(newMessages)
-  }
+    setMessages(prevMessages => [...prevMessages, message]);
+
+    if (!message.isFromSuggestion) {
+      fetchMessage([...messages, message]);
+    }
+  };
 
   const onClear = () => {
     setMessages([])
