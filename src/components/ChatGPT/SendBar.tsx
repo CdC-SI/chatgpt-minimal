@@ -1,7 +1,7 @@
 import React, { KeyboardEventHandler, useState } from 'react';
 import Autosuggest from 'react-autosuggest';
 import { ClearOutlined, SendOutlined } from '@ant-design/icons';
-import { ChatRole, SendBarProps } from './interface';
+import { ChatRole, SendBarProps, Suggestion, SuggestionsFetchRequestedParams } from './interface';
 import Show from './Show';
 import { REACT_APP_QUERY_AUTOCOMPLETE_API_URL } from './const';
 
@@ -20,14 +20,14 @@ const SendBar = (props: SendBarProps) => {
         throw new Error('No matching suggestions found.');
       }
       const data = await response.json();
-      return data.map(item => ({ question: item.question, answer: item.answer }));
+      return data.map((item: Suggestion) => ({ question: item.question, answer: item.answer }));
     } catch (error) {
       console.error('Failed to fetch suggestions:', error);
       return [];
     }
   }
 
-  const onSuggestionsFetchRequested = async ({ value }) => {
+  const onSuggestionsFetchRequested = async ({ value }: SuggestionsFetchRequestedParams) => {
     const fetchedSuggestions = await fetchSuggestions(value);
     setSuggestions(fetchedSuggestions);
   };
@@ -36,22 +36,25 @@ const SendBar = (props: SendBarProps) => {
     setSuggestions([]);
   };
 
-  const getSuggestionValue = suggestion => suggestion.question;
+  const getSuggestionValue = (suggestion: Suggestion) => suggestion.question;
 
-  const renderSuggestion = suggestion => (
+  const renderSuggestion = (suggestion: Suggestion) => (
     <div>
       {suggestion.question}
     </div>
   );
 
-  const onSuggestionSelected = (event, { suggestion }) => {
+  const onSuggestionSelected = (
+    event: React.SyntheticEvent,
+    { suggestion }: { suggestion: Suggestion }
+    ) => {
     setInputValue('');
 
     // Display question in chat
     onSend({
       content: suggestion.question,
       role: ChatRole.User,
-      isFromSuggestion: true // Ensures no OpenAI API call is triggered
+      isFromSuggestion: true // Ensure no OpenAI API call is triggered
     });
 
     // Display answer in chat with short delay
@@ -59,7 +62,7 @@ const SendBar = (props: SendBarProps) => {
       onSend({
         content: suggestion.answer,
         role: ChatRole.Assistant,
-        isFromSuggestion: true  // Ensures no OpenAI API call is triggered
+        isFromSuggestion: true  // Ensure no OpenAI API call is triggered
       });
     }, 100); // Small delay to ensure messages appear in order
   };
@@ -71,7 +74,7 @@ const SendBar = (props: SendBarProps) => {
     onChange: (_: any, { newValue }: any) => {
       setInputValue(newValue);
     },
-    onKeyDown: (e: KeyboardEventHandler<HTMLTextAreaElement>) => {
+    onKeyDown: (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
       if (e.shiftKey) {
         return;
       }
