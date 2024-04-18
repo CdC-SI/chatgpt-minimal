@@ -1,4 +1,5 @@
-import React, { KeyboardEventHandler, useState } from 'react';
+import React, { useState } from 'react';
+import { renderToString } from 'react-dom/server';
 import Autosuggest from 'react-autosuggest';
 import { ClearOutlined, SendOutlined } from '@ant-design/icons';
 import { ChatRole, SendBarProps, Suggestion, SuggestionsFetchRequestedParams } from './interface';
@@ -8,7 +9,7 @@ import { REACT_APP_QUERY_AUTOCOMPLETE_API_URL } from './const';
 const SendBar = (props: SendBarProps) => {
   const { loading, disabled, onSend, onClear, onStop } = props;
 
-  const [suggestions, setSuggestions] = useState<{ question: string, answer: string }[]>([]);
+  const [suggestions, setSuggestions] = useState<{ question: string, answer: string, url: string }[]>([]);
   const [inputValue, setInputValue] = useState('');
 
   const fetchSuggestions = async (value: string) => {
@@ -20,7 +21,7 @@ const SendBar = (props: SendBarProps) => {
         throw new Error('No matching suggestions found.');
       }
       const data = await response.json();
-      return data.map((item: Suggestion) => ({ question: item.question, answer: item.answer }));
+      return data.map((item: Suggestion) => ({ question: item.question, answer: item.answer, url: item.url}));
     } catch (error) {
       console.error('Failed to fetch suggestions:', error);
       return [];
@@ -57,10 +58,22 @@ const SendBar = (props: SendBarProps) => {
       isFromSuggestion: true // Ensure no OpenAI API call is triggered
     });
 
-    // Display answer in chat with short delay
+    // Display answer in chat with short delay and clickable link (answer source)
     setTimeout(() => {
+
+      const contentString = renderToString(
+        <>
+          {suggestion.answer}
+          <br />
+          <br />
+          <a href={suggestion.url} target="_blank" rel="noopener noreferrer">
+            {suggestion.url}
+          </a>
+        </>
+      );
+
       onSend({
-        content: suggestion.answer,
+        content: contentString,
         role: ChatRole.Assistant,
         isFromSuggestion: true  // Ensure no OpenAI API call is triggered
       });
