@@ -37,6 +37,7 @@ export interface ShowProps {
 export interface Suggestion {
   question: string;
   answer: string;
+  url: string;
 }
 
 export interface SuggestionsFetchRequestedParams {
