@@ -16,29 +16,67 @@ const scrollDown = throttle(
   }
 )
 
+// Get context docs API call
+async function fetchContextDocs(userQuery: string) {
+  try {
+    const response = await fetch('http://localhost:8000/get_docs', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({query: userQuery})
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data.response;
+  } catch (error) {
+    console.error('Failed to fetch context docs:', error);
+    return '';  // Return empty string in case of an error
+  }
+}
+
 const requestMessage = async (
   url: string,
   messages: ChatMessage[],
   controller: AbortController | null
 ) => {
+  // Fetch context docs from the /get_docs API
+  let userQuery = messages[messages.length - 1]?.content;
+  let contextDocs = await fetchContextDocs(userQuery);
+  let systemPrompt = "Vous êtes un assistant serviable et attentioné qui répond aux questions de la population au sujet des assurances sociales en Suisse. Répondez uniquement sur la base des documents contextuels fournis. Utilisez TOUTE l'information à disposition dans les documents contextuels fournis pour votre réponse. Si vous ne pouvez pas baser votre réponse uniquement sur les documents contextuels fournis, répondez « Désolé, je ne peux pas répondre à cette question »."
+
+  let lastMessage = messages[messages.length - 1];
+
+  const RAGMessages = messages.map(message => ({
+    ...message,
+    content: systemPrompt + '\n\n' + 'CONTEXTE: ' + contextDocs + '\n\n' + 'QUESTION: ' + userQuery + 'REPONSE: '
+  }));
+
+  let currentMessage = systemPrompt + '\n\n' + 'CONTEXTE: ' + contextDocs + '\n\n' + 'QUESTION: ' + userQuery + 'REPONSE: '
+  console.log(`RAG Messages: ${JSON.stringify(currentMessage)}`);
+
   const response = await fetch(url, {
     method: 'POST',
     body: JSON.stringify({
-      messages
+      messages: RAGMessages
     }),
     signal: controller?.signal
-  })
+  });
 
   if (!response.ok) {
-    throw new Error(response.statusText)
+    throw new Error(response.statusText);
   }
-  const data = response.body
+  const data = response.body;
 
   if (!data) {
-    throw new Error('No data')
+    throw new Error('No data');
   }
 
-  return data.getReader()
+  return data.getReader();
 }
 
 export const useChatGPT = (props: ChatGPTProps) => {
