@@ -113,22 +113,6 @@ const SendBar = (props: SendBarProps) => {
     }
   };
 
-  const theme = {
-    suggestionsList: {
-      listStyleType: 'none',
-      margin: 0,
-      padding: 0,
-    },
-    suggestion: {
-      padding: '5px',
-    },
-    container: {
-      border: '1px solid #ccc',
-      borderRadius: '4px',
-      boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)',
-    },
-  };
-
   return (
     <Show
       fallback={
@@ -142,16 +126,17 @@ const SendBar = (props: SendBarProps) => {
       loading={loading}
     >
       <div className="send-bar">
-        <Autosuggest
-          suggestions={suggestions}
-          onSuggestionsFetchRequested={onSuggestionsFetchRequested}
-          onSuggestionsClearRequested={onSuggestionsClearRequested}
-          getSuggestionValue={getSuggestionValue}
-          renderSuggestion={renderSuggestion}
-          onSuggestionSelected={onSuggestionSelected}
-          inputProps={inputProps}
-          theme={theme}
-        />
+        <div className="autosuggest">
+          <Autosuggest
+            suggestions={suggestions}
+            onSuggestionsFetchRequested={onSuggestionsFetchRequested}
+            onSuggestionsClearRequested={onSuggestionsClearRequested}
+            getSuggestionValue={getSuggestionValue}
+            renderSuggestion={renderSuggestion}
+            onSuggestionSelected={onSuggestionSelected}
+            inputProps={inputProps}
+          />
+        </div>
         <button className="button" title="Send" disabled={disabled} onClick={handleSend}>
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path
