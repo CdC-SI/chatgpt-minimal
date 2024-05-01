@@ -153,10 +153,21 @@ const SendBar = (props: SendBarProps) => {
           theme={theme}
         />
         <button className="button" title="Send" disabled={disabled} onClick={handleSend}>
-          <SendOutlined />
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="m4.30225 10.63623 5.8081 3.01465.02393 2.96484 1.32031-1.84863 3.9043 3.40625 4.77148-13.74316zm1.81152.09571 11.68-4.58008-7.37164 6.8164zm4.752 3.56933-.00049-.04785.02149.01855zm4.14942 2.57715-3.97065-3.46436 7.61835-7.04443z" />
+          </svg>
         </button>
         <button className="button" title="Clear" disabled={disabled} onClick={handleClear}>
-          <ClearOutlined />
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="m15.20188 5.61579-1.30994-1.53223h-3.00049l-1.30994 1.53223h-5.149v.75h1.1831v14.30078h13.519v-14.30078h1.13086v-.75zm-3.96473-.78223h2.30909l.66894.78223h-3.647zm7.14746 15.083h-12.01904v-13.55077h12.019z" />
+            <path d="m7.39585 7.83356h.75v10.92578h-.75z" />
+            <path d="m9.68491 7.83356h.75v10.92578h-.75z" />
+            <path d="m11.97397 7.83356h.75v10.92578h-.75z" />
+            <path d="m14.26303 7.83356h.75v10.92578h-.75z" />
+            <path d="m16.5521 7.83356h.75v10.92578h-.75z" />
+          </svg>
         </button>
       </div>
     </Show>

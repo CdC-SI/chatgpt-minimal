@@ -28,7 +28,9 @@
         background-repeat: no-repeat;
       }
       .user {
-        background-image: linear-gradient(to right, rgb(192 132 252), rgb(250 204 21));
+        background-image: url('../../../public/User.svg');
+        background-color: lightgrey;
+        //background-image: linear-gradient(to right, rgb(192 132 252), rgb(250 204 21));
       }
       .system {
         background-image: linear-gradient(
@@ -154,7 +156,7 @@
     .button {
       min-width: 3rem;
       height: 3rem;
-      padding: 0 0.75rem;
+      padding: 0.46rem 0 0 0;
       font-size: 16px;
       background-color: #e5e7eb;
       border: 0 solid #e5e7eb;
@@ -162,6 +164,9 @@
       cursor: pointer;
       &:active {
         background-color: #ddd;
+      }
+      svg {
+        width: 28px;
       }
     }
   }
