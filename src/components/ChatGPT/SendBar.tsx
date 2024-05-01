@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { renderToString } from 'react-dom/server';
 import Autosuggest from 'react-autosuggest';
-import { ClearOutlined, SendOutlined } from '@ant-design/icons';
 import { ChatRole, SendBarProps, Suggestion, SuggestionsFetchRequestedParams } from './interface';
 import Show from './Show';
 import { REACT_APP_QUERY_AUTOCOMPLETE_API_URL } from './const';

@@ -1,0 +1,84 @@
+.topBar {
+  font-size: 1rem;
+  background-color: #2f4356;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / 1);
+  height: 60px;
+
+  .container {
+    display: flex;
+    justify-content: flex-end;
+    max-width: 1544px;
+    height: 100%;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .language-switcher {
+    height: 100%;
+  }
+}
+
+.language-switcher {
+  display: flex;
+  cursor: pointer;
+
+  .select {
+    height: 100%;
+    margin-top: 0 !important;
+    position: relative;
+  }
+
+  select {
+    height: 100%;
+    cursor: pointer;
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+    width: 4.5em;
+    display: inline-block;
+    padding-right: 1.5rem;
+    border-color: transparent;
+    background-color: transparent;
+    --tw-shadow-color: transparent;
+    --tw-shadow: var(--tw-shadow-colored);
+    box-sizing: border-box;
+    appearance: none;
+    font-size: 1rem;
+    padding-left: 1rem;
+    padding-top: 0.625rem;
+    padding-bottom: 0.625rem;
+
+    option {
+      --tw-text-opacity: 1;
+      color: rgb(255 255 255 / var(--tw-text-opacity));
+      background-color: #2f4356;
+    }
+  }
+}
+
+.select__icon {
+  background-color: transparent;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+  border-left-width: 0px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  --tw-border-opacity: 1;
+  pointer-events: none;
+
+  svg {
+    fill: currentColor;
+    height: 100%;
+    width: 2rem;
+    display: block;
+    vertical-align: middle;
+  }
+}

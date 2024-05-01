@@ -15,12 +15,21 @@ const options: SelectOption[] = [
 const LanguageSwitcher = () => {
   return (
     <>
-      <div className="computedClass">
-        <select>
-          {options.map(option => (
-            <option key={option.value} value={option.value}>{option.label}</option>
-          ))}
-        </select>
+      <div className="language-switcher">
+        <div className="form__group__select">
+          <div className="select">
+            <select className="selectClasses">
+              {options.map(option => (
+                <option key={option.value} value={option.value}>{option.label}</option>
+              ))}
+            </select>
+            <div className="select__icon">
+              <svg viewBox="0 0 24 24">
+                <path d="m5.706 10.015 6.669 3.85 6.669-3.85.375.649-7.044 4.067-7.044-4.067z" />
+              </svg>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   )

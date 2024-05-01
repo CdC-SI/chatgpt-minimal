@@ -1,18 +1,19 @@
 import React from 'react'
 
-import styles from './index.module.less'
 import LanguageSwitcher from './LanguageSwitcher'
+
+import './index.less'
 
 const TopBar = () => {
   return (
     <>
-    <div className={styles.topBar}>
-      <div className={styles.container}>
+    <div className="topBar">
+      <div className="container">
         <LanguageSwitcher />
       </div>
     </div>
   </>
-)
+  )
 }
 
 export default TopBar
