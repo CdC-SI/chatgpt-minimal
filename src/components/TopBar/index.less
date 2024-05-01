@@ -82,3 +82,31 @@
     vertical-align: middle;
   }
 }
+
+.topBarNavigationClass {
+  height: 100%;
+
+  a {
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+    display: flex;
+    align-items: center;
+    color: inherit;
+    text-decoration: inherit;
+  }
+
+  ul {
+    height: 100%;
+    display: flex;
+  }
+
+  ol, ul, menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+}

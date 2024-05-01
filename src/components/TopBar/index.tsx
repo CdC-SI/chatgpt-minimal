@@ -1,6 +1,7 @@
 import React from 'react'
 
 import LanguageSwitcher from './LanguageSwitcher'
+import TopBarNavigation from './TopBarNavigation'
 
 import './index.less'
 
@@ -9,6 +10,7 @@ const TopBar = () => {
     <>
     <div className="topBar">
       <div className="container">
+        <TopBarNavigation />
         <LanguageSwitcher />
       </div>
     </div>
