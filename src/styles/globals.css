@@ -10,6 +10,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: rgba(0, 0, 0, 0.85);
+  overflow-y: scroll;
+
   .ant-layout {
     background: white;
 
