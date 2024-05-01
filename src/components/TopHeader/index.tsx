@@ -12,7 +12,9 @@ const TopHeader = () => {
             <img className={styles.logo__name} src="/logo_text.svg" />
             <div className={styles.logo__separator} />
             <div className={styles.logo__title}>
-              Eidgenössische Ausgleichskasse EAK
+              Eidgenössische Ausgleichskasse
+              <br/>
+              EAK
             </div>
           </div>
         </div>
