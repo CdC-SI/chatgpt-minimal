@@ -1,5 +1,23 @@
 @border-radius: 0.2rem;
 
+.autosuggest {
+  .react-autosuggest__suggestions-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .react-autosuggest__suggestion {
+    padding: 5px;
+  }
+
+  .react-autosuggest__container {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+}
+
 .chat-wrapper {
   width: 100%;
   margin: 0 auto;
@@ -23,12 +41,9 @@
         border-radius: 50%;
       }
       .assistant {
-        background-image: linear-gradient(
-          to right,
-          rgb(232 243 173),
-          rgb(139 248 38),
-          rgb(2 168 209)
-        );
+        background-image: url('../../../public/copilot_logo.png');
+        background-size: contain;
+        background-repeat: no-repeat;
       }
       .user {
         background-image: linear-gradient(to right, rgb(192 132 252), rgb(250 204 21));
@@ -139,8 +154,11 @@
     grid-gap: 0.5rem;
     gap: 0.5rem;
     margin-top: 0.5rem;
-    .input {
+    >div {
       flex: 1;
+    }
+    .input {
+      width: 100%;
       padding: 0.75rem;
       font-size: 16px;
       border: none;
