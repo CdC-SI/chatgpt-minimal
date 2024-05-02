@@ -3,13 +3,14 @@ import React from 'react'
 interface SelectOption {
   value: string;
   label: string;
+  disable: boolean;
 }
 
 const options: SelectOption[] = [
-  { value: 'de', label: 'DE' },
-  { value: 'fr', label: 'FR' },
-  { value: 'it', label: 'IT' },
-  { value: 'en', label: 'EN' }
+  { value: 'de', label: 'DE', disable: false },
+  { value: 'fr', label: 'FR', disable: true },
+  { value: 'it', label: 'IT', disable: true },
+  { value: 'en', label: 'EN', disable: true }
 ]
 
 const LanguageSwitcher = () => {
@@ -20,7 +21,7 @@ const LanguageSwitcher = () => {
           <div className="select select--bare ">
             <select className="input--negative input--sm ">
               {options.map(option => (
-                <option key={option.value} value={option.value}>{option.label}</option>
+                <option key={option.value} value={option.value} disabled={option.disable}>{option.label}</option>
               ))}
             </select>
             <div className="select__icon">
