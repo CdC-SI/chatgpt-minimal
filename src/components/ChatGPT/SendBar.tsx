@@ -17,12 +17,12 @@ const SendBar = (props: SendBarProps) => {
     try {
       const response = await fetch(url);
       if (!response.ok) {
-        throw new Error('No matching suggestions found.');
+        throw new Error('Keine passenden Vorschläge gefunden.'); //EN: No matching suggestions found.
       }
       const data = await response.json();
       return data.map((item: Suggestion) => ({ question: item.question, answer: item.answer, url: item.url}));
     } catch (error) {
-      console.error('Failed to fetch suggestions:', error);
+      console.error('Fehler beim Abrufen von Vorschlägen:', error); //EN: Failed to fetch suggestions:
       return [];
     }
   }
@@ -80,7 +80,7 @@ const SendBar = (props: SendBarProps) => {
   };
 
   const inputProps = {
-    placeholder: "Type a message",
+    placeholder: "Nachricht eingeben", //EN: Type a message
     value: inputValue,
     className: "input",
     onChange: (_: any, { newValue }: any) => {
@@ -116,7 +116,8 @@ const SendBar = (props: SendBarProps) => {
     <Show
       fallback={
         <div className="thinking">
-          <span>Please wait ...</span>
+          <span>Bitte warten ...</span>
+          <span hidden>EN: Please wait ...</span>
           <div className="stop" onClick={onStop}>
             Stop
           </div>

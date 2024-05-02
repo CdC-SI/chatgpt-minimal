@@ -3,6 +3,7 @@ import { Layout } from 'antd'
 import { Content } from 'antd/lib/layout/layout'
 
 import FooterBar from '@/components/FooterBar'
+import FooterNavigation from '@/components/FooterNavigation'
 import TopHeader from '@/components/TopHeader'
 import TopBar from '@/components/TopBar'
 
@@ -17,7 +18,7 @@ export default function Home() {
         <Content className={styles.main}>
           <ChatGPT fetchPath="/api/chat-completion" />
         </Content>
-        <FooterBar />
+        <FooterNavigation />
       </Layout>
     </Layout>
   )

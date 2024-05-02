@@ -15,10 +15,10 @@ const options: SelectOption[] = [
 const LanguageSwitcher = () => {
   return (
     <>
-      <div className="language-switcher">
+      <div className="language-switcher language-switcher--desktop">
         <div className="form__group__select">
-          <div className="select">
-            <select className="selectClasses">
+          <div className="select select--bare ">
+            <select className="input--negative input--sm ">
               {options.map(option => (
                 <option key={option.value} value={option.value}>{option.label}</option>
               ))}

@@ -3,11 +3,11 @@ import React from 'react'
 const TopBarNavigation = () => {
   return (
     <>
-      <nav className="topBarNavigationClass">
+      <nav className="top-bar-navigation top-bar-navigation--desktop">
         <ul>
           <li>
             <a href="#">
-              EAK-Copilot
+              Login
             </a>
           </li>
         </ul>
