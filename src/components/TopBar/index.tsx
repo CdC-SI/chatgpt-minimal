@@ -10,7 +10,7 @@ const TopBar = () => {
       <div className="top-bar__bar">
         <div className="container container--flex">
           <button className="top-bar__btn">
-            <span>EAK-Copilot</span>
+            <span></span>
           </button>
           <div className="top-bar__right">
             <TopBarNavigation />

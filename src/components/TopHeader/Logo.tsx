@@ -12,7 +12,7 @@ const Logo = () => {
         </svg>
         <div className="logo__separator" />
         <div className="logo__title">
-          Eidgenössische Ausgleichskasse EAK
+          EAK-Copilot
         </div>
       </a>
     </>

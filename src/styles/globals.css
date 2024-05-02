@@ -3,6 +3,12 @@
 html,
 body {
   height: 100%;
+  overflow-y: hidden;
+}
+
+main {
+  height: 70vh;
+  overflow-y: scroll;
 }
 
 body {
