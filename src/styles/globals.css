@@ -1,6 +1,14 @@
+@import url("1.0.7.css");
+
 html,
 body {
   height: 100%;
+  overflow-y: hidden;
+}
+
+main {
+  height: 50vh;
+  overflow-y: scroll;
 }
 
 body {
@@ -9,6 +17,20 @@ body {
     'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: rgba(0, 0, 0, 0.85);
+
+  .ant-layout {
+    background: white;
+
+    .ant-layout-content {
+      margin-top: 1.5rem;
+    }
+  }
+}
+
+.footer-navigation {
+  padding: 0.25rem 0 0.25rem 0;
+  font-size: 0.8rem;
 }
 
 code {

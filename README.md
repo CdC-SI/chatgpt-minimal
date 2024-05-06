@@ -1,3 +1,9 @@
+# EAK-Copilot
+
+## Current design
+
+![screenshot](./docs/images/02-05-2024.png)
+
 # ChatGPT Minimal
 
 English | [简体中文](./README.zh-CN.md)
