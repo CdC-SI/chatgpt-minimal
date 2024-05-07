@@ -4,10 +4,14 @@ import Autosuggest from 'react-autosuggest';
 import { ChatRole, SendBarProps, Suggestion, SuggestionsFetchRequestedParams } from './interface';
 import Show from './Show';
 import { REACT_APP_QUERY_AUTOCOMPLETE_API_URL } from './const';
+import Modal from '../SurveyPipeline/Modal';
 
 const SendBar = (props: SendBarProps) => {
-  const { loading, disabled, onSend, onClear, onStop } = props;
 
+  const { loading, disabled, onSend, onClear, onStop } = props;
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [userInput, setUserInput] = useState('');
+  const [assistantAnswer, setAssistantAnswer] = useState('');
   const [suggestions, setSuggestions] = useState<{ question: string, answer: string, url: string }[]>([]);
   const [inputValue, setInputValue] = useState('');
 
@@ -77,6 +81,9 @@ const SendBar = (props: SendBarProps) => {
         isFromSuggestion: true  // Ensure no OpenAI API call is triggered
       });
     }, 100); // Small delay to ensure messages appear in order
+
+    setUserInput(suggestion.question);
+    setAssistantAnswer(suggestion.answer);
   };
 
   const inputProps = {
@@ -104,6 +111,7 @@ const SendBar = (props: SendBarProps) => {
 
   const handleSend = () => {
     if (inputValue) {
+      setUserInput(inputValue);
       setInputValue('');
       onSend({
         content: inputValue,
@@ -112,12 +120,16 @@ const SendBar = (props: SendBarProps) => {
     }
   };
 
+  const handleEdit = () => {
+    setIsModalOpen(true);
+  };
+
   return (
     <Show
       fallback={
         <div className="thinking">
           <span>Bitte warten ...</span>
-          <span hidden>EN: Please wait ...</span>
+          <span hidden>DE: Please wait ...</span>
           <div className="stop" onClick={onStop}>
             Stop
           </div>
@@ -154,6 +166,17 @@ const SendBar = (props: SendBarProps) => {
             <path d="m16.5521 7.83356h.75v10.92578h-.75z" />
           </svg>
         </button>
+        <button className="button" title="Edit" disabled={disabled} onClick={handleEdit}>
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="m17.11768 5.09522-11.31495 11.36132-.57714 3.06836 3.0791-.5664 11.31982-11.36719zm.002 1.06054 1.44432 1.4375-1.873 1.88086-1.44869-1.43335zm-9.1812 12.10743-1.77348.32617.332-1.76758 8.21606-8.24951 1.44867 1.4331z" />
+          </svg>
+        </button>
+        <Modal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+        >
+        </Modal>
       </div>
     </Show>
   )
