@@ -7,11 +7,9 @@ import { REACT_APP_QUERY_AUTOCOMPLETE_API_URL } from './const';
 import Modal from '../SurveyPipeline/Modal';
 
 const SendBar = (props: SendBarProps) => {
-
   const { loading, disabled, onSend, onClear, onStop } = props;
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [userInput, setUserInput] = useState('');
-  const [assistantAnswer, setAssistantAnswer] = useState('');
+
   const [suggestions, setSuggestions] = useState<{ question: string, answer: string, url: string }[]>([]);
   const [inputValue, setInputValue] = useState('');
 
@@ -81,9 +79,6 @@ const SendBar = (props: SendBarProps) => {
         isFromSuggestion: true  // Ensure no OpenAI API call is triggered
       });
     }, 100); // Small delay to ensure messages appear in order
-
-    setUserInput(suggestion.question);
-    setAssistantAnswer(suggestion.answer);
   };
 
   const inputProps = {
@@ -111,7 +106,6 @@ const SendBar = (props: SendBarProps) => {
 
   const handleSend = () => {
     if (inputValue) {
-      setUserInput(inputValue);
       setInputValue('');
       onSend({
         content: inputValue,
