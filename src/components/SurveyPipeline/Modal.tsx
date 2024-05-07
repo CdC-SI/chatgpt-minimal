@@ -7,10 +7,6 @@ interface ModalProps {
 }
 
 const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
-
-    const [userInput, setUserInput] = useState('');
-    const [assistantAnswer, setAssistantAnswer] = useState('');
-
     if (!isOpen) return null;
 
     const handleSave = () => {
@@ -43,8 +39,10 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
                   <li>Klicken Sie auf <strong>Speichern</strong>, um die Änderungen in die Datenbank einzufügen.</li>
               </ul>
           </p>
-          <textarea placeholder="Frage" style={{ width: '100%', height: '10%', marginBottom: '10px' }} value={userInput} onChange={e => setUserInput(e.target.value)}></textarea>
-        <textarea placeholder="Antwort" style={{ width: '100%', height: '60%' }} value={assistantAnswer} onChange={e => setAssistantAnswer(e.target.value)}></textarea>
+          <textarea placeholder="Frage" style={{ width: '100%', height: '10%', marginBottom: '10px' }}></textarea>
+          <textarea placeholder="Antwort" style={{ width: '100%', height: '40%', marginBottom: '10px'  }}></textarea>
+          <textarea placeholder="Quelle URL" style={{ width: '100%', height: '10%', marginBottom: '10px' }}></textarea>
+          <textarea placeholder="Mitarbeiter/in" style={{ width: '100%', height: '10%', marginBottom: '10px'  }}></textarea>
           <button onClick={onClose} style={{ display: 'flex', alignItems: 'center', position: 'absolute', top: '20px', right: '20px' }}>
             <strong style={{ color: "#ff2d00", fontSize: '20px' }}>Stornieren</strong>
               <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="48" height="48">
