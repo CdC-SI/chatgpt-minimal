@@ -9,7 +9,7 @@ import Modal from '../SurveyPipeline/Modal';
 const SendBar = (props: SendBarProps) => {
   const { loading, disabled, onSend, onClear, onStop } = props;
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const [currentSuggestion, setCurrentSuggestion] = useState({ question: '', answer: '', url: '' });
   const [suggestions, setSuggestions] = useState<{ question: string, answer: string, url: string }[]>([]);
   const [inputValue, setInputValue] = useState('');
 
@@ -50,7 +50,9 @@ const SendBar = (props: SendBarProps) => {
     event: React.SyntheticEvent,
     { suggestion }: { suggestion: Suggestion }
     ) => {
+
     setInputValue('');
+    setCurrentSuggestion(suggestion);
 
     // Display question in chat
     onSend({
@@ -169,8 +171,10 @@ const SendBar = (props: SendBarProps) => {
         <Modal
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
-        >
-        </Modal>
+          question={currentSuggestion.question}
+          answer={currentSuggestion.answer}
+          url={currentSuggestion.url}
+        />
       </div>
     </Show>
   )

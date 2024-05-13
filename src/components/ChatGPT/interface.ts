@@ -43,3 +43,12 @@ export interface Suggestion {
 export interface SuggestionsFetchRequestedParams {
   value: string;
 }
+
+export interface ModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  question: string;
+  answer: string;
+  url: string;
+  children?: React.ReactNode;
+}
