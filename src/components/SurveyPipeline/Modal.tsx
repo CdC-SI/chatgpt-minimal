@@ -1,47 +1,55 @@
 import React, { useState } from 'react';
+import { ModalProps } from '../ChatGPT/interface'
 
-interface ModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  children: React.ReactNode;
-}
-
-const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
+const Modal: React.FC<ModalProps> = ({ isOpen, onClose, question, answer, url, children }) => {
     if (!isOpen) return null;
 
     const handleSave = () => {
-      // Dummy HTTP request
-      fetch('https://jsonplaceholder.typicode.com/posts', {
-        method: 'POST',
-        body: JSON.stringify({
-          title: 'foo',
-          body: 'bar',
-          userId: 1,
-        }),
+      const apiUrl = 'http://localhost:8000/data/'; // Replace with your actual API URL
+
+      // Data to be sent in the body of the PUT request
+      const data = JSON.stringify({
+        url: url,        // these should be state variables or props that hold the current values
+        question: question,
+        answer: answer,
+        language: "TEST",
+        id: "TEST"           // Only include this if it's an update, not a new insertion
+      });
+
+      fetch(apiUrl, {
+        method: 'PUT',
+        body: data,
         headers: {
-          'Content-type': 'application/json; charset=UTF-8',
+          'Content-Type': 'application/json',
         },
       })
-      .then((response) => response.json())
-      .then((json) => {
-        console.log(json);
-        onClose(); // Close the modal
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json(); // Parses the JSON response into a native JavaScript object
+      })
+      .then(json => {
+        console.log(json);    // Process your response here
+        onClose();            // Close the modal after successful save
+      })
+      .catch(error => {
+        console.error('There was a problem with your fetch operation:', error);
       });
     };
 
     return (
       <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
         <div style={{ position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', backgroundColor: 'white', padding: '20px', width: '80%', height: '80%' }}>
-          {children}
           <p>Bitte bearbeiten Sie die Frage, die Antwort, die Quelle (URL) und Ihren Namen, falls erforderlich.
           <br /><br />
               <ul>
                   <li>Klicken Sie auf <strong>Speichern</strong>, um die Änderungen in die Datenbank einzufügen.</li>
               </ul>
           </p>
-          <textarea placeholder="Frage" style={{ width: '100%', height: '10%', marginBottom: '10px' }}></textarea>
-          <textarea placeholder="Antwort" style={{ width: '100%', height: '40%', marginBottom: '10px'  }}></textarea>
-          <textarea placeholder="Quelle URL" style={{ width: '100%', height: '10%', marginBottom: '10px' }}></textarea>
+          <textarea placeholder="Frage" value={question} style={{ width: '100%', height: '10%', marginBottom: '10px' }}></textarea>
+          <textarea placeholder="Antwort" value={answer} style={{ width: '100%', height: '40%', marginBottom: '10px' }}></textarea>
+          <textarea placeholder="Quelle URL" value={url} style={{ width: '100%', height: '10%', marginBottom: '10px' }}></textarea>
           <textarea placeholder="Mitarbeiter/in" style={{ width: '100%', height: '10%', marginBottom: '10px'  }}></textarea>
           <button onClick={onClose} style={{ display: 'flex', alignItems: 'center', position: 'absolute', top: '20px', right: '20px' }}>
             <strong style={{ color: "#ff2d00", fontSize: '20px' }}>Stornieren</strong>
