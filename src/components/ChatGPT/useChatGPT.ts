@@ -19,7 +19,7 @@ const scrollDown = throttle(
 // Get context docs API call
 async function fetchContextDocs(userQuery: string) {
   try {
-    const response = await fetch('http://localhost:8000/get_docs', {
+    const response = await fetch('http://localhost:8000/docs', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

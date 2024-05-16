@@ -12,7 +12,7 @@ const SendBar = (props: SendBarProps) => {
   const [inputValue, setInputValue] = useState('');
 
   const fetchSuggestions = async (value: string) => {
-    const url = `${REACT_APP_QUERY_AUTOCOMPLETE_API_URL}/search/?question=${encodeURIComponent(value)}`;
+    const url = `${REACT_APP_QUERY_AUTOCOMPLETE_API_URL}/autocomplete/?question=${encodeURIComponent(value)}`;
 
     try {
       const response = await fetch(url);
