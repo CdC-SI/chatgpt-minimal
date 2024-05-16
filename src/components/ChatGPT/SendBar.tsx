@@ -12,11 +12,7 @@ const SendBar = (props: SendBarProps) => {
   const [inputValue, setInputValue] = useState('');
 
   const fetchSuggestions = async (value: string) => {
-<<<<<<< feature/setup-baseline-rag
     const url = `${REACT_APP_QUERY_AUTOCOMPLETE_API_URL}/autocomplete/?question=${encodeURIComponent(value)}`;
-=======
-    const url = `${REACT_APP_QUERY_AUTOCOMPLETE_API_URL}/exact_match/?question=${encodeURIComponent(value)}`;
->>>>>>> main
 
     try {
       const response = await fetch(url);
