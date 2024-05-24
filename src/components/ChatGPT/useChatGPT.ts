@@ -106,7 +106,7 @@ export const useChatGPT = (props: ChatGPTProps) => {
   }
 
   const fetchMessage = async (messages: ChatMessage[]) => {
-    try {
+    /*try {
       currentMessage.current = ''
       controller.current = new AbortController()
       setLoading(true)
@@ -138,7 +138,17 @@ export const useChatGPT = (props: ChatGPTProps) => {
       console.error(e)
       setLoading(false)
       return
-    }
+    }*/
+
+    currentMessage.current += "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse facilisis neque at diam pulvinar, non vulputate ex elementum. Sed congue neque efficitur ultricies vehicula. Aliquam justo eros, fringilla quis lobortis vitae, dapibus at ante. Phasellus rutrum risus et nulla molestie, at efficitur enim laoreet. Etiam non congue lacus. Donec a augue mauris. Donec nec felis urna. Curabitur consequat ligula ut orci pellentesque iaculis. Vivamus auctor interdum odio, ac commodo lorem. Aliquam purus tellus, tincidunt gravida auctor ac, elementum eget massa. Vivamus quam sem, faucibus vitae velit sodales, malesuada consectetur est. Vivamus nec nisl in lorem sodales placerat nec id risus. Quisque quis ornare nibh.\n" +
+      "\n" +
+      "Aliquam nulla nisi, ultrices eu erat sit amet, bibendum maximus ante. Integer in malesuada erat, quis tempus tortor. Praesent facilisis ligula ut justo varius, a volutpat metus pellentesque. Sed vitae nisi sed risus vulputate consectetur. Nullam a erat vel odio malesuada imperdiet. Mauris pellentesque, nisi sit amet ultricies cursus, diam orci condimentum nisl, ut aliquam lacus est nec massa. Vestibulum vulputate neque vel ante rhoncus, nec laoreet nulla commodo. Aenean faucibus orci nisl. Vivamus eget magna ut eros tristique rutrum.\n" +
+      "\n" +
+      "Aenean ac placerat lacus. Quisque mattis est eu nunc hendrerit elementum. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec nunc orci, ullamcorper a scelerisque ac, pharetra ac massa. Curabitur bibendum velit nec cursus dictum. Nullam commodo commodo sem, eget semper mauris auctor vel. Curabitur mollis ac leo et laoreet. Integer eu vehicula eros, non imperdiet libero. Cras congue at erat ullamcorper rutrum. Duis euismod aliquam mauris a condimentum. Nullam fermentum mollis interdum. Morbi vestibulum elit eget malesuada dignissim.\n" +
+      "\n" +
+      `<a href="https://www.lipsum.com/feed/html" target="_blank">https://www.lipsum.com/feed/html</a>`
+    forceUpdate()
+    archiveCurrentMessage()
   }
 
   const onStop = () => {
