@@ -28,8 +28,8 @@ const SendBar = (props: SendBarProps) => {
   }
 
   const onSuggestionsFetchRequested = async ({ value }: SuggestionsFetchRequestedParams) => {
-    //const fetchedSuggestions = await fetchSuggestions(value);
-    //setSuggestions(fetchedSuggestions);
+    const fetchedSuggestions = await fetchSuggestions(value);
+    setSuggestions(fetchedSuggestions);
   };
 
   const onSuggestionsClearRequested = () => {
