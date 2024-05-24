@@ -44,3 +44,8 @@ code {
 .hidden {
   display: none !important;
 }
+
+.top-bar a, .top-header a {
+  color: inherit;
+  text-decoration: inherit;
+}
