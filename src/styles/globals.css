@@ -3,12 +3,6 @@
 html,
 body {
   height: 100%;
-  overflow-y: hidden;
-}
-
-main {
-  height: 50vh;
-  overflow-y: scroll;
 }
 
 body {
@@ -43,4 +37,15 @@ code {
 
 .hidden {
   display: none !important;
+}
+
+.input,
+input,
+textarea,
+select {
+  line-height: inherit;
+}
+
+.chat-wrapper .send-bar .button {
+  padding: 0 !important;
 }

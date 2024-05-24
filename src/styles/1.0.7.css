@@ -5936,7 +5936,7 @@ main a{
 .link--block{
   display: block;
 }
-.authors__names .link--external,.authors__names 
+.authors__names .link--external,.authors__names
 main a[rel*='external']{
   color: inherit;
 }
@@ -6703,11 +6703,11 @@ main a[rel*='external']{
   margin-left: auto;
   margin-right: auto;
 }
-/* 
-    Sizing: 
-    I didn't use `container container--grid` & `container__center--sm` 
-    as the container then take the full-width and block the interaction 
-    of the backdrop 
+/*
+    Sizing:
+    I didn't use `container container--grid` & `container__center--sm`
+    as the container then take the full-width and block the interaction
+    of the backdrop
     */
 .modal--xs .modal__content{
   max-width: 480px;
@@ -9459,8 +9459,8 @@ th[aria-sort='ascending'] .table__sorter span::after {
 }
 /*----------------------------------------*\
  DEPRECATED
- TODO - remove when .search-result has been replaced 
- by .card.card--list component 
+ TODO - remove when .search-result has been replaced
+ by .card.card--list component
 \*----------------------------------------*/
 .search-result.card--clickable:hover,.search-result.card--clickable:focus-within{
   background-color: transparent;

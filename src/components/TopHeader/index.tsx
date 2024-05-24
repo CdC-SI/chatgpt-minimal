@@ -1,6 +1,7 @@
 import React from 'react'
 
 import Logo from './Logo'
+import MetaNavigation from './MetaNavigation'
 
 const TopHeader = () => {
   return (
@@ -8,6 +9,8 @@ const TopHeader = () => {
       <div className="top-header">
         <div className="container container--flex">
           <Logo />
+          <div className="top-header__right">
+          </div>
         </div>
       </div>
     </>
