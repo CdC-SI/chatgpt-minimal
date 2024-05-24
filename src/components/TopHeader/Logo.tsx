@@ -12,7 +12,7 @@ const Logo = () => {
         </svg>
         <div className="logo__separator" />
         <div className="logo__title">
-          EAK-Copilot
+          ZAS/EAK-Copilot
         </div>
       </a>
     </>
