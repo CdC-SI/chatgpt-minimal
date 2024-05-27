@@ -794,18 +794,18 @@ html {
   word-spacing: 0.0625em;
 }
 body{
-  font-size: 1rem;
+  font-size: 1rem !important;
 }
 @media (min-width: 1280px){
 
   body{
-    font-size: 1.125rem;
+    font-size: 1.125rem !important;
   }
 }
 @media (min-width: 1920px){
 
   body{
-    font-size: 1.25rem;
+    font-size: 1.25rem !important;
   }
 }
 body{
