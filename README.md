@@ -2,7 +2,7 @@
 
 ## Current design
 
-![screenshot](./docs/images/02-05-2024.png)
+![screenshot](./docs/images/24-05-2024.png)
 
 # ChatGPT Minimal
 

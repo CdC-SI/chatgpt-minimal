@@ -5,16 +5,6 @@ import { throttle } from 'lodash-es'
 
 import { ChatGPTProps, ChatMessage, ChatRole } from './interface'
 
-const scrollDown = throttle(
-  () => {
-    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
-  },
-  300,
-  {
-    leading: true,
-    trailing: false
-  }
-)
 
 // Get context docs API call
 async function fetchContextDocs(userQuery: string) {
@@ -101,7 +91,6 @@ export const useChatGPT = (props: ChatGPTProps) => {
           }
         ]
       })
-      scrollDown()
     }
   }
 
@@ -126,7 +115,6 @@ export const useChatGPT = (props: ChatGPTProps) => {
             currentMessage.current += char
             forceUpdate()
           }
-          scrollDown()
         }
         done = readerDone
 
