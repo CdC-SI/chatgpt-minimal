@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 
 const MetaNavigation = () => {
   return (
@@ -7,12 +8,12 @@ const MetaNavigation = () => {
       <nav className="meta-navigation meta-navigation--desktop " aria-label="Meta">
         <ul>
           <li>
-            <a href="/" className="meta-navigation__item"> Copilot
-            </a>
+            <Link href="/" className="meta-navigation__item"> Copilot
+            </Link>
           </li>
           <li>
-            <a href="/about" className="meta-navigation__item"> About us
-            </a>
+            <Link href="/about" className="meta-navigation__item"> About us
+            </Link>
           </li>
         </ul>
       </nav>
