@@ -1,4 +1,4 @@
-import ChatGPT from '@/components/ChatGPT'
+import RAG from '@/components/RAG'
 import { Layout } from 'antd'
 import { Content } from 'antd/lib/layout/layout'
 
@@ -16,7 +16,7 @@ export default function Home() {
         <TopBar />
         <TopHeader />
         <Content className={styles.main}>
-          <ChatGPT fetchPath="/api/chat-completion" />
+          <RAG fetchPath="/api/chat-completion" />
         </Content>
         <FooterNavigation />
       </Layout>

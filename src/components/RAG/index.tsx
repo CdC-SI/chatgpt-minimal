@@ -1,15 +1,15 @@
 import React, { useEffect, useRef } from 'react'
 
-import { ChatGPTProps, ChatRole } from './interface'
+import { RAGProps, ChatRole } from './interface'
 import MessageItem from './MessageItem'
 import SendBar from './SendBar'
-import { useChatGPT } from './useChatGPT'
+import { useRAG } from './useRAG'
 
 import './index.less'
 import 'highlight.js/styles/atom-one-dark.css'
 
-const ChatGPT = (props: ChatGPTProps) => {
-  const { loading, disabled, messages, currentMessage, onSend, onClear, onStop } = useChatGPT(props)
+const RAG = (props: RAGProps) => {
+  const { loading, disabled, messages, currentMessage, onSend, onClear, onStop } = useRAG(props)
 
   const chatEndRef = useRef<null | HTMLDivElement>(null);
 
@@ -38,4 +38,4 @@ const ChatGPT = (props: ChatGPTProps) => {
   )
 }
 
-export default ChatGPT
+export default RAG

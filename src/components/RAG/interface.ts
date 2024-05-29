@@ -6,7 +6,7 @@ export enum ChatRole {
   System = 'system'
 }
 
-export interface ChatGPTProps {
+export interface RAGProps {
   fetchPath: string
 }
 
