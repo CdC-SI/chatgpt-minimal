@@ -44,3 +44,16 @@ code {
 .hidden {
   display: none !important;
 }
+
+.top-bar a, .top-header a, .top-header a:hover {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+.hero__title {
+  text-align: left;
+}
+
+.hero__description {
+  text-align: justify;
+}
